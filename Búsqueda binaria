@@ -1,0 +1,56 @@
+//busqueda binaria
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	int vector[6]={12,2,6,99,1,6};
+    int aux;
+	printf("\n-----------------------\n");
+	printf("vector:\n");
+	for(int i=0;i<6;i++){
+		printf("[%i]",vector[i]);
+	}
+    printf("\n---------------------------\n");
+	printf("acomodacion:\n");
+	for(int t=0;t<7;t++){
+	    for(int j=0;j<7;j++){
+		    if(vector[j]>vector[j+1]){
+			   aux=vector[j];
+			   vector[j]=vector[j+1];
+			   vector[j+1]=aux;
+		    }
+	    }
+	}
+	for(int k=1;k<7;k++){
+			printf("[%i]",vector[k]);
+	}
+	printf("\n------------------------------\n");
+	int a,inicio,ultimo,mitad;
+	char band='F';
+	printf("busqueda binaria:\n");
+	printf("numero que desea buscar:\t");
+	scanf("%i",&a);
+	inicio=0;
+	ultimo=6;
+	while((ultimo+inicio)/2!=0){
+		mitad=(inicio+ultimo)/2;
+		if(vector[mitad]==a){
+			band='V';
+			break;
+		}
+		if(vector[mitad]>a){
+			ultimo=mitad;
+			mitad=(inicio+ultimo)/2;
+		}
+		if(vector[mitad]<a){
+			inicio=mitad;
+			mitad=(inicio+ultimo)/2;
+		}
+	}
+	if(band='V'){
+		printf("El numero si esta en el vector\n");
+		printf("y esta en la posicion %i",mitad);
+	}else{
+		printf("el numero no existe en el vector\n");
+	}
+	return 0;
+}
